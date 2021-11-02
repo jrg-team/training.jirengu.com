@@ -1,20 +1,6 @@
 <template>
   <div class="background">
     <section class="experience-wrapper" :class="{'section-margin': enable, 'default-margin': !enable}">
-      <template v-if="enable">
-        <div class="title title-margin">
-          <h3>让真实数据说话</h3>
-          <p>一些数据，或许可以代表我们的实力</p>
-        </div>
-        <div class="block-wrapper">
-          <div class="block" v-for="(block, index) in dataBlocks" :key="index">
-            <div>
-              <h2>{{block.title}}<span class="unit">{{block.unit}}</span></h2>
-              <span class="description">{{block.description}}</span>
-            </div>
-          </div>
-        </div>
-      </template>
       <div class="row pc" v-if="enable">
         <div class="title col">
           <h6>{{commentLink.subTitle}}</h6>
@@ -110,6 +96,9 @@
         p {margin: 20px 0 10px;}
         a {color: $blue;}
       }
+    }
+    .image-wrapper > img {
+      max-width: 100%;
     }
     .text-with-pic-wrapper {
       .title {
