@@ -2,12 +2,12 @@
   <header>
     <nav class="black-navigator pc">
       <div class="content" id="link-wrapper">
-        <i class="iconfont" id="black-navigator-icon" :class="icon"></i>
         <a :href="links[0].href" target="_blank">
+          <i class="iconfont icon" id="black-navigator-icon" :class="icon"></i>
           <span class="active">{{ links[0].name }}</span>
         </a>
         <a href="https://xiedaimala.com" target="_blank">
-          <span>课程平台</span>
+          <span>学习平台</span>
         </a>
         <a href="https://blog.jirengu.com/?cat=11" target="_blank">
           <span>就业数据</span>
@@ -156,8 +156,8 @@ export default {
     links() {
       const baseLinks = Object.entries(allConfig).map(([key, value]) => ({
         key: key,
-        name: value.alias,
-        href: value.link,
+        name: "主站",
+        href: "https://jirengu.com",
       }));
       return baseLinks.sort((_, b) =>
         b.key === process.env.BUILD_FLAG ? 1 : -1
