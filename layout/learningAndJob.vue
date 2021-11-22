@@ -56,7 +56,7 @@
         <div class="col">
           <h5>学习保障</h5>
           <ul>
-            <li>承诺一周且5个任务内退全款，4个月内且高级任务前可申请退款（扣除已经学习的费用）</li>
+            <li>{{promise}}</li>
             <li>退费条款写入合同，具有法律效应，真实保障</li>
             <a :href="href['promise']" class="pc">
               进一步了解
