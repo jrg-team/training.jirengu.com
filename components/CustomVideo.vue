@@ -167,7 +167,7 @@
   .video-modal {
     > .video-mask {
       position: fixed;
-      z-index: $mask-z-index;
+      z-index: $video-mask-z-index;
       top: 0;
       left: 0;
       width: 100vw;
