@@ -41,7 +41,7 @@
           </v-popover>
         </div>
         <div class="copyright">
-          Copyright © 2021 Hungervalley Inc. 保留所有权利。
+          Copyright © 2022 Hungervalley Inc. 保留所有权利。
           <br class="mobile" />
           <a href="https://beian.miit.gov.cn/" target="_blank">{{record}}</a>
           <!-- <a>隐私政策</a>
