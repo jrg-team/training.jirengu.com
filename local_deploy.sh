@@ -11,7 +11,7 @@ if [[ "$branch" == "master" ]]; then
   echo 'git pull origin master:master';
   git pull origin master:master &&
   echo 'rm -rf dist && build' &&
-  # rm -rf dist && yarn build:all &&
+  rm -rf dist && yarn build:all &&
   echo "build"
   cd dist && tar -czf build-${hash}.tar.gz ./* && cd - &&
   echo "uploading... dist/build-${hash}.tar.gz" &&
