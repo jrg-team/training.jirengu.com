@@ -6,22 +6,34 @@ exec 2>&1
 # https://serverfault.com/a/103569/373950
 branch=$(git rev-parse --abbrev-ref HEAD);
 hash=$(git rev-parse HEAD);
-cdnDir="jirengu-website"
+
 if [[ "$branch" == "master" ]]; then
   echo 'git pull origin master:master';
   git pull origin master:master &&
   echo 'rm -rf dist && build' &&
-  rm -rf dist && yarn build:all &&
+  # rm -rf dist && yarn build:all &&
   echo "build"
   cd dist && tar -czf build-${hash}.tar.gz ./* && cd - &&
   echo "uploading... dist/build-${hash}.tar.gz" &&
   scp "dist/build-${hash}.tar.gz" hunger@jirengu.com:homepage/deploys/ &&
   echo "ssh and set current dir ..." &&
+  export GIT_COMMIT_HASH=$hash;
   ssh hunger@jirengu.com "cd homepage/deploys/ && rm -rf ${hash}; mkdir ${hash} && tar -xf build-${hash}.tar.gz -C ${hash}" &&
-  ssh hunger@jirengu.com "cd homepage/deploys/ && rm build-${hash}.tar.gz" &&
-  ssh hunger@jirengu.com "export GIT_COMMIT_HASH=$hash; export JIRENGU_CDN_DIR=$cdnDir; bash -s" < ./scripts/set_current.sh &&
+  ssh hunger@jirengu.com "cd homepage/deploys/ && rm build-${hash}.tar.gz"
+
+  if [[ ! -f "./ossutil64" ]]; then
+    echo "Download ossutil";
+    wget http://gosspublic.alicdn.com/ossutil/1.6.0/ossutil64
+    chmod 755 ossutil64
+  fi
+
+  rm "dist/build-${hash}.tar.gz"
+  ./ossutil64 cp -r -c oss_config --update ./dist "oss://jirengu-website/" --jobs 10
+
+  ssh hunger@jirengu.com "export GIT_COMMIT_HASH=$hash; bash -s" < ./scripts/set_current.sh
+
   echo "cleaning ..." &&
-  rm "dist/build-${hash}.tar.gz" && echo 'OK!' &&
+  echo 'OK!'
   exit 0
 else
   echo "请确保你在 master 分支"

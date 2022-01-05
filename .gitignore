@@ -3,3 +3,8 @@ node_modules/
 
 .idea
 .cache
+
+oss_config
+ossutil64
+ossutil_output
+
