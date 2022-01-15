@@ -21,7 +21,7 @@
     "cross-env": "^6.0.3",
     "ejs": "^2.7.1",
     "layout": "^2.2.0",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "parcel-plugin-ejs-template": "^0.1.2",
     "react": "^16.12.0",
     "swiper": "^4.5.0",
