@@ -9,7 +9,7 @@
       <div
         class="center-icon-wrapper"
         :class="{playing: playing}"
-        @click="() => {playing = true; slotProps.togglePlayStatus()}"
+        @click="onPlayClick(slotProps.togglePlayStatus)"
         v-if="!disabled"
       >
         <i class="iconfont hcsp-bofang controller-button"></i>
@@ -33,6 +33,15 @@
       return {
         ...videoConfig[process.env.BUILD_FLAG],
         playing: false,
+      }
+    },
+    methods: {
+      onPlayClick(callback) {
+        if (this.actionType === 'redirect') {
+          return window.open(this.link, '_blank')
+        }
+        this.playing = true
+        callback()
       }
     }
   }
