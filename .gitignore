@@ -7,4 +7,5 @@ node_modules/
 oss_config
 ossutil64
 ossutil_output
-
+dist/
+.parcel-cache/
