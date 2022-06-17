@@ -1,7 +1,7 @@
 <template>
   <section class="learning-wrapper section-margin">
     <div class="title title-margin">
-      <h3>学习与就业保障</h3>
+      <h3>{{title || '学习与就业保障'}}</h3>
       <p>尽我们所能，想学生之所想，让学生在轻松真实的环境下开展学习，同时保障学习的效果，学生个人权益，承诺服务至就业</p>
     </div>
     <div class="text-wrapper">
@@ -9,9 +9,14 @@
         <div class="col">
           <h5>课程服务</h5>
           <ul>
-            <li>任课老师无时差答疑，有问题随时call老师</li>
-            <li>大量学习资料，视频主导、文章辅助、作业练习，实时更新</li>
-            <li>课程1V1作业批改指导，查漏补缺</li>
+            <template v-if="!!course">
+              <li v-for="item in course" :key="item">{{item}}</li>
+            </template>
+            <template v-else>
+              <li>任课老师无时差答疑，有问题随时call老师</li>
+              <li>大量学习资料，视频主导、文章辅助、作业练习，实时更新</li>
+              <li>课程1V1作业批改指导，查漏补缺</li>
+            </template>
             <a :href="href['course']" class="pc">
               进一步了解
               <i class="iconfont hcsp-right"></i>
@@ -21,17 +26,22 @@
         <div class="col">
           <h5>班级服务</h5>
           <ul>
-            <li>班主任定期检查进度，关注每位学生的学习</li>
-            <li>班级活动，堪比线下的超活跃学习氛围</li>
-            <li class="tips">
-              <v-popover v-for="(tooltip,index) in tooltips" :key="index">
-                <span class="text">{{tooltip.text}}</span>
-                <span v-if="index < (tooltips.length -1)">，</span>
-                <template slot="popover">
-                  <p>{{ tooltip.tip }}</p>
-                </template>
-              </v-popover>
-            </li>
+            <template v-if="!!classes">
+              <li v-for="item in classes" :key="item">{{item}}</li>
+            </template>
+            <template v-else>
+              <li>班主任定期检查进度，关注每位学生的学习</li>
+              <li>班级活动，堪比线下的超活跃学习氛围</li>
+              <li class="tips">
+                <v-popover v-for="(tooltip,index) in tooltips" :key="index">
+                  <span class="text">{{tooltip.text}}</span>
+                  <span v-if="index < (tooltips.length -1)">，</span>
+                  <template slot="popover">
+                    <p>{{ tooltip.tip }}</p>
+                  </template>
+                </v-popover>
+              </li>
+            </template>
             <a :href="href['class']" class="pc">
               进一步了解
               <i class="iconfont hcsp-right"></i>
@@ -43,10 +53,15 @@
         <div class="col">
           <h5>就业服务</h5>
           <ul>
-            <li>模拟面试，模拟真实面试场景，打有准备的仗</li>
-            <li>简历指导，不造假简历，只需最真实的项目描述</li>
-            <li>内推岗位，国内一线大厂皆可内推</li>
-            <li>面试押题，涵盖大多数企业面试题，提前准备</li>
+            <template v-if="!!job">
+              <li v-for="item in job" :key="item">{{item}}</li>
+            </template>
+            <template v-else>
+              <li>模拟面试，模拟真实面试场景，打有准备的仗</li>
+              <li>简历指导，不造假简历，只需最真实的项目描述</li>
+              <li>内推岗位，国内一线大厂皆可内推</li>
+              <li>面试押题，涵盖大多数企业面试题，提前准备</li>
+            </template>
             <a :href="href['job']" class="pc">
               进一步了解
               <i class="iconfont hcsp-right"></i>
@@ -104,7 +119,7 @@ export default {
       ],
       ...learningConfig[process.env.BUILD_FLAG]
     };
-  }
+  },
 };
 </script>
 

@@ -24,8 +24,8 @@
           <black-button class="black-button" :linkTo="commentLink.link">{{commentLink.linkTo}}</black-button>
         </div>
       </text-with-pic>
-      <div class="row cards-wrapper" :class="{'card-margin': !enable}">
-        <section class="card col" v-for="(card, index) in articleLinks" :key="index">
+      <div class="row cards-wrapper" :class="{'card-margin': !enable}" v-if="articleLinks.length">
+        <section class="card col" v-for="(card, index) in articleLinks" :key="index" >
           <h6>{{card.subTitle}}</h6>
           <h5>{{card.title}}</h5>
           <p>{{card.content}}</p>
@@ -50,7 +50,7 @@
             <span class="download">下载 PDF 格式的课程大纲 <i class="iconfont hcsp-right"/></span>
             <template slot="popover">
               <div v-for="(pdf, index) in pdfLinks" :key="index" class="pdf-link">
-                <a :href="pdf.link" target="_blank"><i class="iconfont hcsp-xiazai"></i> {{pdf.title}} </a>
+                <a :href="pdf.link" :download="pdf.title" target="_blank"><i class="iconfont hcsp-xiazai"></i> {{pdf.title}} </a>
               </div>
             </template>
           </v-popover>
@@ -69,7 +69,7 @@
     name: 'experience',
     components: {TextWithPic, BlackButton},
     data() {
-      return experienceConfig[process.env.BUILD_FLAG]
+      return experienceConfig[process.env.BUILD_FLAG] || {}
     }
   }
 </script>

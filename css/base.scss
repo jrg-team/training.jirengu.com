@@ -254,3 +254,8 @@ img.meqia-button {
     height: 48px;
   }
 }
+
+::selection {
+  background-color: rgba(45, 45, 45, 0.98);
+  color: #eee;
+}

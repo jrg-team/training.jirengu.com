@@ -1,5 +1,5 @@
 <template>
-  <section class="project-wrapper section-margin">
+  <section class="project-wrapper section-margin" v-if="enabled">
     <div class="title title-margin">
       <h3>{{ title }}</h3>
       <p>{{ subTitle }}</p>
@@ -82,6 +82,7 @@
 <script>
 import TextWithPic from "../components/TextWithPic";
 import { projectConfig } from "../lib/config";
+const configs = projectConfig[process.env.BUILD_FLAG];
 export default {
   name: "project",
   components: {
@@ -91,14 +92,15 @@ export default {
     return {
       imagesExpand: false,
       isMobile: document.body.clientWidth < 500,
-      ...projectConfig[process.env.BUILD_FLAG],
+      enabled: !!configs,
+      ...configs,
     };
   },
   methods: {
     listenScrollToElement: function (selector) {
-      let offsetTotop = document
-        .querySelector(selector)
-        .getBoundingClientRect().top;
+      const element = document.querySelector(selector)
+      if (!element) return false
+      let offsetTotop = element.getBoundingClientRect().top;
       let height = document.documentElement.clientHeight;
       if (offsetTotop - height / 3 <= 0) return true;
       else return false;
