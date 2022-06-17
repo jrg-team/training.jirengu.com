@@ -33,7 +33,7 @@ export default {
 
 <style scoped lang="scss">
 
-$slider-width: 260px;
+$slider-width: 220px;
 $slider-name-font-size: 14px;
 
 $mini-slider-width: 100px;
