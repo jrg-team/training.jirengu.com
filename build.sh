@@ -7,3 +7,5 @@ echo 'BUILD_FLAG=jirengu' > .env &&
 parcel build ./*.ejs --no-cache --no-source-maps --public-url https://jirengu-website.oss-cn-hangzhou.aliyuncs.com/jirengu --out-dir dist/jirengu
 echo 'BUILD_FLAG=cplusplus' > .env &&
 parcel build ./*.ejs --no-cache --no-source-maps --public-url https://jirengu-website.oss-cn-hangzhou.aliyuncs.com/cplusplus --out-dir dist/cplusplus
+echo 'BUILD_FLAG=english' > .env &&
+parcel build ./*.ejs --no-cache --no-source-maps --public-url https://jirengu-website.oss-cn-hangzhou.aliyuncs.com/english --out-dir dist/english

@@ -13,7 +13,8 @@
     "build:all": "bash ./build.sh",
     "build:java": "echo 'BUILD_FLAG=yinghekongjian' > .env && parcel build ./*.ejs --no-cache --no-source-maps --out-dir dist/java",
     "build:jirengu": "echo 'BUILD_FLAG=jirengu' > .env && parcel build ./*.ejs --no-cache --no-source-maps --public-url /new --out-dir dist/jirengu",
-    "build:cplusplus": "echo 'BUILD_FLAG=cplusplus' > .env && parcel build ./*.ejs --no-cache --no-source-maps --public-url /C++ --out-dir dist/cplusplus"
+    "build:cplusplus": "echo 'BUILD_FLAG=cplusplus' > .env && parcel build ./*.ejs --no-cache --no-source-maps --public-url /C++ --out-dir dist/cplusplus",
+    "build:english": "echo 'BUILD_FLAG=english' > .env && parcel build ./*.ejs --no-cache --no-source-maps --public-url /english --out-dir dist/english"
   },
   "dependencies": {
     "@svgr/parcel-plugin-svgr": "^5.5.0",
