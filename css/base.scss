@@ -238,20 +238,60 @@ p {
   font-size: 13px;
 }
 
-img.meqia-button {
+@keyframes rock {
+  75% { transform: rotate(0deg); }
+  80% { transform: rotate(-8deg); }
+  85% { transform: rotate(6deg); }
+  90% { transform: rotate(-4deg); }
+  95% { transform: rotate(2deg); }
+}
+
+@keyframes tada {
+  0% { transform: scale3d(1, 1, 1); }
+
+  5%, 10% { transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg); }
+
+  15%, 25%, 35%, 45% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg); }
+
+  20%, 30%, 40% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg); }
+
+  50%, 100% { transform: scale3d(1, 1, 1); }
+}
+
+.meqia-button {
   position: fixed;
-  right: 10px;
-  bottom: 10px;
+  right: 20px;
+  bottom: 20px;
   width: 64px;
   height: 64px;
   z-index: 10;
   cursor: pointer;
+  // animation: rock 2.5s 2s infinite;
+  animation: tada 2.5s infinite;
+  .wrapper {
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(45, 45, 45, 0.98);
+    padding: 10px;
+    padding-left: 12px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
 }
 
 @media (max-width: 499px) {
-  img.meqia-button {
+  .meqia-button {
     width: 48px;
     height: 48px;
+    .wrapper {
+      padding: 8px;
+      padding-left: 10px;
+    }
   }
 }
 

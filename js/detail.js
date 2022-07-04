@@ -13,6 +13,7 @@ new Vue({
   el: '#app',
   data() {
     return {
+      type: TYPE,
       swiperOption: {
         navigation: {
           nextEl: '.swiper-button-next',
