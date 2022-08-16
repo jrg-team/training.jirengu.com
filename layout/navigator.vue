@@ -157,7 +157,7 @@ export default {
       const baseLinks = Object.entries(allConfig).map(([key, value]) => ({
         key: key,
         name: "主站",
-        href: "https://jirengu.com",
+        href: "https://training.jirengu.com",
       }));
       return baseLinks.sort((_, b) =>
         b.key === process.env.BUILD_FLAG ? 1 : -1
