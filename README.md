@@ -8,6 +8,10 @@
 
 ``bash build.sh``
 
+## 部署
+
+`bash local_deploy.sh`
+
 ## 发布到github预览
 
 ```bash

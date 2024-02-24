@@ -15,11 +15,11 @@ if [[ "$branch" == "master" ]]; then
   echo "build"
   cd dist && tar -czf build-${hash}.tar.gz ./* && cd - &&
   echo "uploading... dist/build-${hash}.tar.gz" &&
-  scp "dist/build-${hash}.tar.gz" hunger@training.jirengu.com:homepage/deploys/ &&
+  scp "dist/build-${hash}.tar.gz" task-center@training.jirengu.com:homepage/deploys/ &&
   echo "ssh and set current dir ..." &&
   export GIT_COMMIT_HASH=$hash;
-  ssh hunger@training.jirengu.com "cd homepage/deploys/ && rm -rf ${hash}; mkdir ${hash} && tar -xf build-${hash}.tar.gz -C ${hash}" &&
-  ssh hunger@training.jirengu.com "cd homepage/deploys/ && rm build-${hash}.tar.gz"
+  ssh task-center@training.jirengu.com "cd homepage/deploys/ && rm -rf ${hash}; mkdir ${hash} && tar -xf build-${hash}.tar.gz -C ${hash}" &&
+  ssh task-center@training.jirengu.com "cd homepage/deploys/ && rm build-${hash}.tar.gz"
 
   if [[ ! -f "./ossutil64" ]]; then
     echo "Download ossutil";
@@ -30,7 +30,7 @@ if [[ "$branch" == "master" ]]; then
   rm "dist/build-${hash}.tar.gz"
   ./ossutil64 cp -r -c oss_config --update ./dist "oss://jirengu-website/" --jobs 10
 
-  ssh hunger@training.jirengu.com "export GIT_COMMIT_HASH=$hash; bash -s" < ./scripts/set_current.sh
+  ssh task-center@training.jirengu.com "export GIT_COMMIT_HASH=$hash; bash -s" < ./scripts/set_current.sh
 
   echo "cleaning ..." &&
   echo 'OK!'
